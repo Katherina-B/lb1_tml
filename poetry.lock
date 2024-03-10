@@ -1,0 +1,26 @@
+[[package]]
+name = "torch"
+version = "1.10.0"
+...
+
+[[package]]
+name = "torchvision"
+version = "0.11.1"
+dependencies = [
+ "numpy",
+ "pillow",
+ "torch==1.10.0",
+]
+...
+
+[metadata]
+lock-version = "1.0"
+python-versions = "^3.8"
+content-hash = "..." 
+
+[metadata.files]
+torch = [
+    {file = "...", hash = "..."},
+    {file = "...", hash = "..."},
+]
+...
