@@ -1,8 +1,8 @@
-# config.yaml
+# Data configuration
 data:
-  download_url: https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz
   local_dir: /content/data
 
+# Dataset configuration
 dataset:
   train_split: 0.7
   val_split: 0.2
@@ -11,8 +11,9 @@ dataset:
   input_shape: [32, 32, 3]
   num_classes: 100
 
+# Training configuration
 training:
-  epochs: 10
+  epochs: 100
   batch_size: 32
   optimizer:
     name: adam
@@ -20,18 +21,22 @@ training:
   loss: cross_entropy
   metrics:
     - accuracy
+    - f1_score
 
+# Model configuration
 model:
   name: resnet18
   pretrained: False
   num_classes: 100
   freeze_base: False
 
+# Logging configuration
 logging:
   level: INFO
   file: /content/logs/training.log
   format: '%(asctime)s - %(levelname)s - %(message)s'
 
+# Artifacts configuration
 artifacts:
   output_dir: /content/artifacts
   save_best_model: True
