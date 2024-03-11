@@ -5,7 +5,7 @@ authors = ["Katherina Barbasheva <katherina.barbasheva@gmail.com>"]
 version = "0.01"
 
 [tool.poetry.dependencies]
-python = "3.8"
+python = "~3.10"
 torch = "2.1.0"
 torchvision = "0.16.0"
 tqdm = "4.64.1"
