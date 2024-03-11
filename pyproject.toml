@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "lb1
+name = "lb1"
 description = "Training pipeline for CIFAR-100 dataset"
 authors = ["Katherina Barbasheva <katherina.barbasheva@gmail.com>"]
 
