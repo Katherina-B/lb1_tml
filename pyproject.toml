@@ -5,20 +5,25 @@ authors = ["Katherina Barbasheva <katherina.barbasheva@gmail.com>"]
 version = "0.01"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "3.8"
 torch = "2.1.0+cu121"
 torchvision = "0.16.0+cu121"
-tqdm = "^4.64.1"
-matplotlib = "^3.6.3"
-numpy = "^1.21.6"
-pyyaml = "^6.0"
+tqdm = "4.64.1"
+matplotlib = "3.6.3"
+numpy = "1.21.6"
+pyyaml = "6.0"
 
 [tool.poetry.dev-dependencies]
-mypy = "^0.991"
-ruff = "^0.0.254"
-black = "^23.1.0"
-isort = "^5.12.0"
+mypy = "0.991"
+ruff = "0.0.254"
+black = "23.1.0"
+isort = "5.12.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "pytorch"
+priority = "supplemental"
+url = "https://download.pytorch.org/whl/cu118"
