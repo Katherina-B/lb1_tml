@@ -6,8 +6,8 @@ version = "0.01"
 
 [tool.poetry.dependencies]
 python = "~3.10"
-torch = "2.1.0"
-torchvision = "0.16.0"
+torch = { version = "2.1.0+cu118", source = "pytorch" }
+torchvision = { version = "0.16.0+cu118", source = "pytorch" }
 tqdm = "4.64.1"
 matplotlib = "3.6.3"
 numpy = "1.21.6"
