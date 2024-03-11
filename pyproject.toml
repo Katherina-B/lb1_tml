@@ -2,6 +2,7 @@
 name = "lb1"
 description = "Training pipeline for CIFAR-100 dataset"
 authors = ["Katherina Barbasheva <katherina.barbasheva@gmail.com>"]
+version = "0.01"
 
 [tool.poetry.dependencies]
 python = "^3.8"
