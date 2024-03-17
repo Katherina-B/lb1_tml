@@ -25,8 +25,8 @@ def download_and_extract_archive(url, destination_folder):
     os.remove(filename)
  
 if __name__ == "__main__":
-    archive_url = "https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"
-    destination_folder = "cifar_dataset"  # Specify the folder where you want to extract the contents
+    archive_url = "https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz"
+    destination_folder = "cifar100_dataset"  # Specify the folder where you want to extract the contents
  
     download_and_extract_archive(archive_url, destination_folder)
     print(f"Archive extracted to {destination_folder}")
