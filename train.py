@@ -40,20 +40,25 @@ def load_data(data_dir: str) -> Dataset:
     Returns:
         Dataset: A tuple containing the train, validation, and test datasets.
     """
+    # Define data transformations
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
 
-    train_dataset = torchvision.datasets.CIFAR100(root=data_dir, train=True, download=True, transform=transform)
-    test_dataset = torchvision.datasets.CIFAR100(root=data_dir, train=False, download=True, transform=transform)
+    # Load the entire CIFAR-100 dataset
+    dataset = torchvision.datasets.CIFAR100(root=data_dir, train=True, download=True, transform=transform)
 
-    train_size = int(config["dataset"]["train_split"] * len(train_dataset))
-    val_size = int(config["dataset"]["val_split"] * len(train_dataset))
-    test_size = len(train_dataset) - train_size - val_size
+    # Calculate the dataset split sizes
+    total_size = len(dataset)
+    train_size = int(config["dataset"]["train_split"] * total_size)
+    val_size = int(config["dataset"]["val_split"] * total_size)
+    test_size = total_size - train_size - val_size
 
-    train_dataset, val_dataset, _ = random_split(
-        train_dataset, [train_size, val_size, test_size],
+    # Split the dataset into train, validation, and test sets
+    train_dataset, val_dataset, test_dataset = random_split(
+        dataset,
+        [train_size, val_size, test_size],
         generator=torch.Generator().manual_seed(config["dataset"]["random_seed"])
     )
 
