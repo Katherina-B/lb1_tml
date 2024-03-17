@@ -1,6 +1,12 @@
+import yaml
 import os
 import requests
 import tarfile
+
+def load_config(config_file):
+    with open(config_file, 'r') as file:
+        config = yaml.safe_load(file)
+    return config
  
 def download_and_extract_archive(url, destination_folder):
     # Create the destination folder if it doesn't exist
@@ -25,8 +31,10 @@ def download_and_extract_archive(url, destination_folder):
     os.remove(filename)
  
 if __name__ == "__main__":
-    archive_url = "https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz"
-    destination_folder = "cifar100_dataset"  # Specify the folder where you want to extract the contents
- 
-    download_and_extract_archive(archive_url, destination_folder)
+    config_file = "config.yaml"
+    config = load_config(config_file)
+    archive_url = config['data']['dataset_url']
+    destination_folder = config['data']['local_dir']
+
+    download_and_extract_archive(archive_url, destination_folder, config)
     print(f"Archive extracted to {destination_folder}")
