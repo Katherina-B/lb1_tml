@@ -47,10 +47,10 @@ def load_data(data_dir: str) -> Dataset:
     ])
 
     # Load the train dataset
-    train_dataset = torchvision.datasets.CIFAR100(root=os.path.join(data_dir, 'cifar-100-python/train'), train=True, download=False, transform=transform)
+    train_dataset = torchvision.datasets.CIFAR10(root=data_dir, train=True, download=False, transform=transform)
 
     # Load the test dataset
-    test_dataset = torchvision.datasets.CIFAR100(root=os.path.join(data_dir, 'cifar-100-python/test'), train=False, download=False, transform=transform)
+    test_dataset = torchvision.datasets.CIFAR10(root=data_dir, train=False, download=False, transform=transform)
 
     # Calculate the validation split size
     total_size = len(train_dataset)
