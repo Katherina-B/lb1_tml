@@ -1,15 +1,7 @@
 # Data configuration
 data:
   local_dir: /content/data
-
-# Dataset configuration
-dataset:
-  train_split: 0.7
-  val_split: 0.2
-  test_split: 0.1
-  random_seed: 42
-  input_shape: [32, 32, 3]
-  num_classes: 100
+  dataset_url: https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz
 
 # Training configuration
 training:
