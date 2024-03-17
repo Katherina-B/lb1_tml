@@ -8,7 +8,7 @@ def load_config(config_file):
         config = yaml.safe_load(file)
     return config
  
-def download_and_extract_archive(url, destination_folder):
+def download_and_extract_archive(url, destination_folder, config=None):
     # Create the destination folder if it doesn't exist
     if not os.path.exists(destination_folder):
         os.makedirs(destination_folder)
