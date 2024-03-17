@@ -46,19 +46,21 @@ def load_data(data_dir: str) -> Dataset:
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
 
-    # Load the entire CIFAR-100 dataset
-    dataset = torchvision.datasets.CIFAR100(root=data_dir, train=True, download=True, transform=transform)
+    # Load the train dataset
+    train_dataset = torchvision.datasets.CIFAR100(root=os.path.join(data_dir, 'cifar-100-python'), train=True, download=False, transform=transform)
 
-    # Calculate the dataset split sizes
-    total_size = len(dataset)
-    train_size = int(config["dataset"]["train_split"] * total_size)
+    # Load the test dataset
+    test_dataset = torchvision.datasets.CIFAR100(root=os.path.join(data_dir, 'cifar-100-python'), train=False, download=False, transform=transform)
+
+    # Calculate the validation split size
+    total_size = len(train_dataset)
     val_size = int(config["dataset"]["val_split"] * total_size)
-    test_size = total_size - train_size - val_size
+    train_size = total_size - val_size
 
-    # Split the dataset into train, validation, and test sets
-    train_dataset, val_dataset, test_dataset = random_split(
-        dataset,
-        [train_size, val_size, test_size],
+    # Split the train dataset into train and validation sets
+    train_dataset, val_dataset = random_split(
+        train_dataset,
+        [train_size, val_size],
         generator=torch.Generator().manual_seed(config["dataset"]["random_seed"])
     )
 
