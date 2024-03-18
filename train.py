@@ -93,7 +93,7 @@ def create_model() -> ModelOutput:
     )
 
     # Create the loss function
-    loss_fn = getattr(nn, config["training"]["loss"] + "Loss")()
+    loss_fn = getattr(nn, config["training"]["loss"])()
 
     return model, optimizer, loss_fn
 
