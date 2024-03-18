@@ -1,6 +1,6 @@
 # Data configuration
 data:
-  local_dir: /content/data
+  local_dir: /content/data/cifar-100-python
   dataset_url: https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz
 
 # Training configuration
