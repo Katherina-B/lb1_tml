@@ -15,6 +15,12 @@ from tqdm import tqdm
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
+# Extract the directory path from the log file path
+log_dir = os.path.dirname(config["logging"]["file"])
+
+# Create the directory if it doesn't exist
+os.makedirs(log_dir, exist_ok=True)
+
 # Set up logging
 logging.basicConfig(
     level=config["logging"]["level"],
