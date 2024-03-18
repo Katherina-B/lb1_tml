@@ -16,7 +16,7 @@ training:
   epochs: 100
   batch_size: 32
   optimizer:
-    name: adam
+    name: Adam
     lr: 0.001
   loss: cross_entropy
   metrics:
