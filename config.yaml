@@ -18,14 +18,14 @@ training:
   optimizer:
     name: Adam
     lr: 0.001
-  loss: cross_entropy
+  loss: CrossEntropyLoss
   metrics:
     - accuracy
     - f1_score
 
 # Model configuration
 model:
-  name: resnet18
+  name: Resnet18
   pretrained: False
   num_classes: 100
   freeze_base: False
