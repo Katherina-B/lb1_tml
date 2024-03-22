@@ -11,6 +11,9 @@ import yaml
 from torch.utils.data import DataLoader, random_split
 from tqdm import tqdm
 
+output_dir = "/content/artifacts"
+os.makedirs(output_dir, exist_ok=True)
+
 # Load configuration
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
