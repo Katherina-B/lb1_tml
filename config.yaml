@@ -1,7 +1,11 @@
 # Data configuration
 data:
-  local_dir: /content/data/cifar-100-python
-  dataset_url: https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz
+  local_dir: /content/data/flower-102
+  dataset_url: https://www.robots.ox.ac.uk/~vgg/data/flowers/102/102flowers.tgz
+  num_batches: 7
+  train_batches: [0, 1, 2, 3, 4]
+  val_batches: [5]
+  test_batches: [6]
 
 dataset:
   train_split: 0.7
@@ -9,11 +13,11 @@ dataset:
   test_split: 0.1
   random_seed: 42
   input_shape: [32, 32, 3]
-  num_classes: 100
+  num_classes: 102
 
 # Training configuration
 training:
-  epochs: 20
+  epochs: 10
   batch_size: 32
   optimizer:
     name: Adam
