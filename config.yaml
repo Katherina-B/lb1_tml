@@ -17,7 +17,7 @@ dataset:
 
 # Training configuration
 training:
-  epochs: 10
+  epochs: 13
   batch_size: 32
   optimizer:
     name: Adam
@@ -31,7 +31,7 @@ training:
 model:
   name: resnet18
   pretrained: False
-  num_classes: 100
+  num_classes: 102
   freeze_base: False
 
 # Logging configuration
