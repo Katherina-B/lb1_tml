@@ -15,7 +15,7 @@ dataset:
 # Training configuration
 training:
   epochs: 13
-  batch_size: 128
+  batch_size: 4
   optimizer:
     name: Adam
     lr: 0.001
