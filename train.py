@@ -1,6 +1,6 @@
 import logging
 import os
-import json  # Add this line
+import json
 from typing import Dict, Tuple
 
 import torch
@@ -11,29 +11,11 @@ import torchvision.transforms as transforms
 import yaml
 from torch.utils.data import DataLoader, random_split
 from tqdm import tqdm
+import torchvision.datasets as datasets
+from math import floor
 
 output_dir = "/content/artifacts"
 os.makedirs(output_dir, exist_ok=True)
-
-import torchvision.datasets as datasets
-
-# Завантажуємо весь набір даних
-full_dataset = datasets.ImageFolder(root=data_dir, transform=transform)
-from torch.utils.data import random_split
-from math import floor
-
-# Визначаємо розміри наборів даних
-train_ratio = config["dataset"]["train_split"]
-val_ratio = config["dataset"]["val_split"]
-test_ratio = config["dataset"]["test_split"]
-
-total_size = len(full_dataset)
-train_size = floor(train_ratio * total_size)
-val_size = floor(val_ratio * total_size)
-test_size = total_size - train_size - val_size
-
-# Розділяємо повний набір даних на навчальний, валідаційний та тестовий набори
-train_dataset, val_dataset, test_dataset = random_split(full_dataset, [train_size, val_size, test_size])
 
 # Load configuration
 with open("config.yaml", "r") as f:
@@ -59,7 +41,6 @@ logger = logging.getLogger(__name__)
 # Type hints
 Dataset = Tuple[torch.utils.data.Dataset, torch.utils.data.Dataset, torch.utils.data.Dataset]
 ModelOutput = Tuple[nn.Module, optim.Optimizer, nn.CrossEntropyLoss]
-
 
 def load_data(data_dir: str) -> Dataset:
     """Load and preprocess the dataset.
@@ -92,6 +73,7 @@ def load_data(data_dir: str) -> Dataset:
     train_dataset, val_dataset, test_dataset = random_split(full_dataset, [train_size, val_size, test_size])
 
     return train_dataset, val_dataset, test_dataset
+
 
 def create_model() -> ModelOutput:
     """Create the model, optimizer, and loss function."""
