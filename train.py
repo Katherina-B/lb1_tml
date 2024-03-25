@@ -93,7 +93,6 @@ def load_data(data_dir: str) -> Dataset:
 
     return train_dataset, val_dataset, test_dataset
 
-
 def create_model() -> ModelOutput:
     """Create the model, optimizer, and loss function."""
     # Create the model
