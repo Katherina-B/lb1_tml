@@ -53,6 +53,7 @@ def load_data(data_dir: str) -> Dataset:
     """
     # Define data transformations
     transform = transforms.Compose([
+        transforms.Resize((224, 224)),  # Resize images to 224x224 pixels
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
