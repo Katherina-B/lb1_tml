@@ -15,6 +15,26 @@ from tqdm import tqdm
 output_dir = "/content/artifacts"
 os.makedirs(output_dir, exist_ok=True)
 
+import torchvision.datasets as datasets
+
+# Завантажуємо весь набір даних
+full_dataset = datasets.ImageFolder(root=data_dir, transform=transform)
+from torch.utils.data import random_split
+from math import floor
+
+# Визначаємо розміри наборів даних
+train_ratio = config["dataset"]["train_split"]
+val_ratio = config["dataset"]["val_split"]
+test_ratio = config["dataset"]["test_split"]
+
+total_size = len(full_dataset)
+train_size = floor(train_ratio * total_size)
+val_size = floor(val_ratio * total_size)
+test_size = total_size - train_size - val_size
+
+# Розділяємо повний набір даних на навчальний, валідаційний та тестовий набори
+train_dataset, val_dataset, test_dataset = random_split(full_dataset, [train_size, val_size, test_size])
+
 # Load configuration
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
@@ -56,14 +76,20 @@ def load_data(data_dir: str) -> Dataset:
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
 
-    # Load the train dataset
-    train_dataset = torchvision.datasets.ImageFolder(root=os.path.join(data_dir, "train"), transform=transform)
+    # Load the full dataset
+    full_dataset = datasets.ImageFolder(root=data_dir, transform=transform)
 
-    # Load the validation dataset
-    val_dataset = torchvision.datasets.ImageFolder(root=os.path.join(data_dir, "val"), transform=transform)
+    # Split the dataset into train, validation, and test sets
+    train_ratio = config["dataset"]["train_split"]
+    val_ratio = config["dataset"]["val_split"]
+    test_ratio = config["dataset"]["test_split"]
 
-    # Load the test dataset
-    test_dataset = torchvision.datasets.ImageFolder(root=os.path.join(data_dir, "test"), transform=transform)
+    total_size = len(full_dataset)
+    train_size = floor(train_ratio * total_size)
+    val_size = floor(val_ratio * total_size)
+    test_size = total_size - train_size - val_size
+
+    train_dataset, val_dataset, test_dataset = random_split(full_dataset, [train_size, val_size, test_size])
 
     return train_dataset, val_dataset, test_dataset
 
